@@ -3,6 +3,10 @@ import { resolve } from "node:path";
 import { Plugin } from "vite";
 import { OutputChunk } from "rollup";
 
+interface PluginConfiguration {
+  outputDir?: string;
+}
+
 interface Lock {
   version: string;
   resolved: string;
@@ -68,7 +72,8 @@ function normalizeImportModule(imports: string): string {
   }
 }
 
-export const generatePackageJson = (outputDir = "build"): Plugin => {
+export const generatePackageJson = (options: PluginConfiguration = {}): Plugin => {
+  const { outputDir = "build" } = options;
   return {
     name: "generate-package-json",
     enforce: "post",

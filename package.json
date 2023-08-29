@@ -1,5 +1,5 @@
 {
-  "name": "@maccuaa/vite-plugin-generate-package-json",
+  "name": "vite-plugin-generate-package-json",
   "version": "1.0.0",
   "description": "Generate package.json file with packages from your Vite bundle",
   "main": "./dist/index.js",
