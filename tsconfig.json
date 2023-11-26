@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
+    "types": ["bun-types"],
     "outDir": "dist",
     "declaration": true
   }
