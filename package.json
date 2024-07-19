@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-generate-package-json",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate package.json file with packages from your Vite bundle",
   "types": "dist/index.d.ts",
   "type": "module",
