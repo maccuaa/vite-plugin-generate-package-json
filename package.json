@@ -2,7 +2,8 @@
   "name": "vite-plugin-generate-package-json",
   "version": "1.1.1",
   "description": "Generate package.json file with packages from your Vite bundle",
-  "types": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
   "type": "module",
   "engines": {
     "node": ">=18.0.0"
