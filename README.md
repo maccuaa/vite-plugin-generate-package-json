@@ -1,5 +1,7 @@
 # vite-plugin-generate-package-json
 
+![NPM Version](https://img.shields.io/npm/v/vite-plugin-generate-package-json)
+
 Generate a `package.json` and `package-lock.json` file with only the packages that your Vite bundle imports.
 
 ## About
