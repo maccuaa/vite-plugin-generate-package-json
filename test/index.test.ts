@@ -1,5 +1,8 @@
+import { beforeAll, expect, it, setDefaultTimeout } from "bun:test";
 import { $, file } from "bun";
-import { beforeAll, expect, it } from "bun:test";
+
+// Set timeout to 60 seconds for npm install and build
+setDefaultTimeout(60000);
 
 // build the sample app
 beforeAll(async () => {
