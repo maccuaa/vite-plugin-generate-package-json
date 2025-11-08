@@ -7,6 +7,7 @@
       "devDependencies": {
         "@tsconfig/node-lts": "^22.0.0",
         "@types/bun": "^1.1.6",
+        "rollup": "^4.53.1",
         "typescript": "^5.5.3",
         "vite": "^7.0.0",
       },
