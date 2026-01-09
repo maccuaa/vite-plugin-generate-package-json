@@ -1,7 +1,7 @@
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { Plugin } from "vite";
-import { OutputChunk } from "rollup";
+import type { OutputChunk } from "rollup";
+import type { Plugin } from "vite";
 
 interface PluginConfiguration {
   outputDir?: string;
@@ -86,19 +86,20 @@ export const generatePackageJson = (options: PluginConfiguration = {}): Plugin =
       const dependencies = new Set<string>();
 
       // Get all the module IDs
-      Object.values(bundle).forEach((c) => {
+      for (const c of Object.values(bundle)) {
         const chunk = c as OutputChunk;
-
-        chunk.moduleIds?.forEach((moduleId) => moduleIds.add(moduleId));
-      }, moduleIds);
+        for (const moduleId of chunk.moduleIds ?? []) {
+          moduleIds.add(moduleId);
+        }
+      }
 
       // Normalize the module IDs into a list of unique dependencies
-      Array.from(moduleIds).map((moduleId) => {
+      for (const moduleId of moduleIds) {
         const normalized = normalizeImportModule(moduleId);
         if (normalized.length) {
           dependencies.add(normalized);
         }
-      });
+      }
 
       const packageLockJson = await readPackageLockJson(process.cwd(), "package-lock.json");
 
@@ -136,7 +137,7 @@ export const generatePackageJson = (options: PluginConfiguration = {}): Plugin =
 
       try {
         await mkdir(outputPath);
-      } catch (e) {
+      } catch {
         // ignore
       }
 
