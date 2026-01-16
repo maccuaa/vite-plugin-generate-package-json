@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history for commitlint
       - uses: wagoid/commitlint-github-action@b948419dd99f3fd78a6548d48f94e3df7f6bf3ed # v6
-      - uses: oven-sh/setup-bun@db6bcf6eb8d88a8aa03265b887ec7bd84d64cd68 # v2
+      - uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
       - run: bun i --frozen-lockfile
       - run: bun run build
       - run: bun run lint
