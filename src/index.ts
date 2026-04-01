@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import type { OutputChunk } from "rollup";
+import type { OutputChunk } from "rolldown";
 import type { Plugin } from "vite";
 
 interface PluginConfiguration {
