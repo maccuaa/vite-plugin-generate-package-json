@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/maccuaa/vite-plugin-generate-package-json/compare/v1.3.1...v1.4.0) (2026-04-01)
+
+
+### Features
+
+* add Vite compatibility fields for vite plugin registry ([9123ca7](https://github.com/maccuaa/vite-plugin-generate-package-json/commit/9123ca7a2310c58f5fd8efabe844352583224538))
+
 ## [1.3.1](https://github.com/maccuaa/vite-plugin-generate-package-json/compare/v1.3.0...v1.3.1) (2025-10-17)
 
 
