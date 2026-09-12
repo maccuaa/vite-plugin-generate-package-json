@@ -46,7 +46,7 @@
     "@biomejs/biome": "2.5.12",
     "@tsconfig/node-lts": "24.0.1",
     "@types/node": "26.5.0",
-    "rolldown": "1.2.7",
+    "rolldown": "1.2.8",
     "typescript": "7.0.2",
     "vite": "8.2.2"
   }
