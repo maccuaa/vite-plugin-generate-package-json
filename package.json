@@ -45,7 +45,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
     "@tsconfig/node-lts": "24.0.1",
-    "@types/node": "26.6.2",
+    "@types/node": "26.6.3",
     "rolldown": "1.2.11",
     "typescript": "7.0.2",
     "vite": "8.3.1"
