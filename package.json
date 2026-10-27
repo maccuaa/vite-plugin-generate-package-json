@@ -10,10 +10,10 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./dist --target node && tsc",
+    "build": "bun build --check ./src/index.ts --outdir ./dist --target node && tsc --noCheck",
     "clean": "rm -rf dist sample/build sample/dist sample/node_modules",
-    "lint": "biome check .",
-    "check": "biome check --write ."
+    "lint": "bun fmt --check && biome lint .",
+    "fix": "bun fmt && biome lint --write ."
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
     "@tsconfig/node-lts": "24.0.1",
+    "@types/bun": "1.4.4",
     "@types/node": "26.6.5",
     "rolldown": "1.2.15",
     "typescript": "7.0.2",
