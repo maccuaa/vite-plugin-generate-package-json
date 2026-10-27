@@ -28,6 +28,9 @@ vite-plugin-generate-package-json/
 │   └── public/
 ├── package.json              # Project metadata and dependencies
 ├── tsconfig.json             # TypeScript configuration
+├── bunfig.toml               # Bun configuration (formatter and import sorting)
+├── biome.json                # Biome configuration (linting only)
+├── .bun-version              # Pinned Bun version used by CI
 └── README.md                 # User-facing documentation
 ```
 
@@ -86,21 +89,30 @@ export default defineConfig({
 ### Technology Stack
 
 - **Runtime**: Node.js >=18.0.0
-- **Build Tool**: Bun
+- **Build Tool**: Bun (version pinned in `.bun-version`)
 - **Language**: TypeScript
+- **Type Checking**: Bun (`bun check`, `bun build --check`)
+- **Formatting**: Bun (`bun fmt`, which also sorts imports)
+- **Linting**: Biome (lint rules only)
 - **Package Manager**: npm (peer dependency on Vite)
 
 ### Build Process
 
 The project uses a two-step build process:
 
-1. Bun compiles TypeScript to JavaScript (`bun build`)
-2. TypeScript compiler generates type definitions (`tsc`)
+1. `bun build --check` type-checks the code and compiles TypeScript to JavaScript
+2. TypeScript compiler generates type definitions (`tsc --noCheck`), because Bun can't emit `.d.ts` files
 
 ### Scripts
 
-- `bun run build`: Builds the plugin and generates type definitions
+- `bun run build`: Type-checks the code, builds the plugin and generates type definitions
 - `bun run clean`: Removes build artifacts and sample project dependencies
+- `bun run lint`: Checks formatting (`bun fmt --check`) and lints with Biome
+- `bun run fix`: Formats with `bun fmt` and applies safe Biome lint fixes
+
+`bun check` (type-checks `src/`) and `bun fmt` are Bun built-ins. Don't add `check` or `fmt` scripts to `package.json`: a script with the same name runs instead of the built-in.
+
+Formatter settings live in the `[fmt]` section of `bunfig.toml`. `CHANGELOG.md` is excluded because Release Please generates it.
 
 ### Dependencies
 
@@ -110,14 +122,15 @@ The project uses a two-step build process:
 
 **Dev Dependencies:**
 
+- `@biomejs/biome`: Linter (formatting and import sorting are handled by `bun fmt`)
 - `@tsconfig/node-lts`: TypeScript configuration for Node.js LTS
-- `@types/bun`: Type definitions for Bun
-- `typescript`: TypeScript compiler
+- `@types/bun`: Type definitions for Bun (used to type-check the tests)
+- `typescript`: TypeScript compiler (used by `tsc` to emit type definitions)
 - `vite`: Vite bundler (for development)
 
 ## Testing
 
-The project includes a test suite in `test/index.test.ts`. A sample project is provided in the `sample/` directory to demonstrate and test the plugin's functionality.
+The project includes a test suite in `test/index.test.ts`. A sample project is provided in the `sample/` directory to demonstrate and test the plugin's functionality. The tests use the built plugin, so run `bun run build` first, then `bun test --check` (as CI does), which type-checks the tests before running them.
 
 ## Use Cases
 
@@ -174,7 +187,7 @@ This project uses:
 
 - GitHub for version control and issue tracking
 - Release Please for automated versioning and changelog generation
-- Renovate for automated dependency updates
+- Renovate for automated dependency updates (including the Bun version in `.bun-version`)
 
 ## License
 
