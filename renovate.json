@@ -6,5 +6,13 @@
     "enabled": true,
     "automerge": true
   },
-  "osvVulnerabilityAlerts": true
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "Security PRs corrupt complex peerDependencies ranges (each `||` alternative becomes the fix version, space-joined). Leave peer ranges alone there; regular widening is unaffected.",
+      "matchDepTypes": ["peerDependencies"],
+      "matchJsonata": ["isVulnerabilityAlert = true"],
+      "enabled": false
+    }
+  ]
 }
